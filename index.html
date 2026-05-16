@@ -13,13 +13,43 @@
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
 
+    <meta name="theme-color" id="theme-color-meta" content="#FFFFFF">
+
     <style>
-        /* ล็อกตายตัว ห้ามไหล ห้ามเลื่อน พื้นหลังสีเดียวกับ Top Bar */
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #0D1B2A; }
-        iframe { width: 100%; height: 100%; border: none; display: block; }
+        /* 🚨 1. โหมด Safari ทั่วไป (ใช้ 100dvh แก้บั๊กแถบ Safari ดันแถบเมนูด้านล่างหาย) */
+        body, html { 
+            margin: 0; padding: 0; width: 100%; 
+            height: 100dvh; /* dvh = Dynamic Viewport Height */
+            overflow: hidden; background-color: #FFFFFF; 
+        }
+        
+        /* 🚨 2. โหมด PWA (Standalone) */
+        @media (display-mode: standalone) {
+            body, html {
+                /* เวทมนตร์ทาสีพื้นหลัง: ครึ่งบนเป็น Navy (รองรับ Topbar) ครึ่งล่างเป็น ขาว (รองรับ Bottom bar) */
+                background-image: linear-gradient(to bottom, #0D1B2A 50%, #FFFFFF 50%);
+                
+                /* ดันกรอบ iframe ให้หลบรอยบากกล้อง และเส้น Home Indicator ด้านล่างพอดีเป๊ะ */
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
+                box-sizing: border-box;
+            }
+        }
+
+        /* 🚨 3. iframe ทำหน้าที่เป็นแค่กรอบสี่เหลี่ยมสมบูรณ์ ไม่ต้องคำนวณอะไรเองแล้ว */
+        iframe { 
+            width: 100%; height: 100%; border: none; display: block; 
+            background-color: #F7F8FA; 
+        }
     </style>
 </head>
 <body>
     <iframe src="https://script.google.com/macros/s/AKfycbx3QwtvfLC5tKw6N7usrnX4DIuhHKbkX9AktAf0rVl9RIIBCaWD9yVMnDgI8PuXuq9U1A/exec"></iframe>
+    <script>
+        // เปลี่ยนสีแถบสเตตัสบาร์ด้านบนสุดให้กลืนกับสี Navy ตอนเป็น PWA
+        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+            document.getElementById('theme-color-meta').setAttribute('content', '#0D1B2A');
+        }
+    </script>
 </body>
 </html>
