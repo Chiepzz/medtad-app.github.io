@@ -16,37 +16,44 @@
     <meta name="theme-color" id="theme-color-meta" content="#FFFFFF">
 
     <style>
-        /* 🚨 1. โหมด Safari ทั่วไป (ใช้ 100dvh แก้บั๊กแถบ Safari ดันแถบเมนูด้านล่างหาย) */
+        /* 1. ล็อกตายตัว ห้ามยางยืด ห้ามขยับ แก้ปัญหา "เลื่อนทั้งจอ" 100% */
         body, html { 
-            margin: 0; padding: 0; width: 100%; 
-            height: 100dvh; /* dvh = Dynamic Viewport Height */
-            overflow: hidden; background-color: #FFFFFF; 
-        }
-        
-        /* 🚨 2. โหมด PWA (Standalone) */
-        @media (display-mode: standalone) {
-            body, html {
-                /* เวทมนตร์ทาสีพื้นหลัง: ครึ่งบนเป็น Navy (รองรับ Topbar) ครึ่งล่างเป็น ขาว (รองรับ Bottom bar) */
-                background-image: linear-gradient(to bottom, #0D1B2A 50%, #FFFFFF 50%);
-                
-                /* ดันกรอบ iframe ให้หลบรอยบากกล้อง และเส้น Home Indicator ด้านล่างพอดีเป๊ะ */
-                padding-top: env(safe-area-inset-top);
-                padding-bottom: env(safe-area-inset-bottom);
-                box-sizing: border-box;
-            }
+            margin: 0; padding: 0; 
+            position: fixed; inset: 0; 
+            background-color: #FFFFFF; 
+            overflow: hidden;
         }
 
-        /* 🚨 3. iframe ทำหน้าที่เป็นแค่กรอบสี่เหลี่ยมสมบูรณ์ ไม่ต้องคำนวณอะไรเองแล้ว */
-        iframe { 
-            width: 100%; height: 100%; border: none; display: block; 
-            background-color: #F7F8FA; 
+        /* 2. ระบายสีแถบบนสุดให้เป็น Navy เพื่ออมรอยบากกล้องตอนเป็น PWA */
+        .navy-notch {
+            position: absolute; top: 0; left: 0; right: 0; 
+            height: 100px; background-color: #0D1B2A; 
+            z-index: 1;
         }
+
+        /* 3. กล่อง Safe Area ที่จะเจาะช่องตรงกลางให้ iframe ของคุณหมออยู่ */
+        #safe-box {
+            position: absolute;
+            /* หดตัวหลบรอยบากบนและเส้นดำด้านล่างอัตโนมัติ */
+            top: env(safe-area-inset-top);
+            bottom: env(safe-area-inset-bottom);
+            left: 0; right: 0;
+            z-index: 2;
+            background-color: #F7F8FA;
+        }
+
+        iframe { width: 100%; height: 100%; border: none; display: block; }
     </style>
 </head>
 <body>
-    <iframe src="https://script.google.com/macros/s/AKfycbx3QwtvfLC5tKw6N7usrnX4DIuhHKbkX9AktAf0rVl9RIIBCaWD9yVMnDgI8PuXuq9U1A/exec"></iframe>
+    <div class="navy-notch"></div>
+
+    <div id="safe-box">
+        "https://script.google.com/macros/s/AKfycbx3QwtvfLC5tKw6N7usrnX4DIuhHKbkX9AktAf0rVl9RIIBCaWD9yVMnDgI8PuXuq9U1A/exec"
+    </div>
+
     <script>
-        // เปลี่ยนสีแถบสเตตัสบาร์ด้านบนสุดให้กลืนกับสี Navy ตอนเป็น PWA
+        // สลับสี theme-color สำหรับ PWA ให้แถบเวลาเนียนไปกับสี Navy
         if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
             document.getElementById('theme-color-meta').setAttribute('content', '#0D1B2A');
         }
