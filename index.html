@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -15,11 +15,20 @@
     <link rel="apple-touch-icon" sizes="180x180" href="logo.png">
     <link rel="icon" sizes="192x192" href="logo.png">
     
-    <meta name="theme-color" content="#0D1B2A">
+    <meta name="theme-color" content="#FFFFFF">
 
     <style>
-        /* ปรับพื้นหลังตรงนี้เป็นสี Navy เข้ม เวลาแอปโหลดจะดูเนียนตาไม่ขาววาบครับ */
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #0D1B2A; }
+        /* 🚨 4. พื้นหลังปกติสำหรับเปิดในเบราว์เซอร์ (Safari) ให้เป็นสีขาว */
+        body, html { 
+            margin: 0; padding: 0; height: 100%; overflow: hidden; 
+            background-color: #FFFFFF; 
+        }
+        
+        /* 🚨 5. เวทมนตร์แยกโหมด: ถ้าเปิดแบบแอป (Standalone/PWA) ให้เปลี่ยนพื้นหลังตอนโหลดเป็นสี Navy เข้ม */
+        @media (display-mode: standalone) {
+            body, html { background-color: #0D1B2A; }
+        }
+
         iframe { width: 100%; height: 100%; border: none; display: block; }
     </style>
 </head>
