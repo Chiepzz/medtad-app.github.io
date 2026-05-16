@@ -2,42 +2,37 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MedTad (เม็ดตัด)</title>
 
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="MedTad">
-    
+    <meta name="application-name" content="MedTad">
+
     <link rel="icon" type="image/png" href="logo.png">
-    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.png">
+    <link rel="icon" sizes="192x192" href="logo.png">
+    
+    <meta name="theme-color" content="#FFFFFF">
 
     <style>
-        /* 1. ล็อกตายตัว ห้ามไหล ห้ามเลื่อน */
+        /* 🚨 4. พื้นหลังปกติสำหรับเปิดในเบราว์เซอร์ (Safari) ให้เป็นสีขาว */
         body, html { 
-            margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; 
-            /* ทาสีพื้นหลัง: ครึ่งบนเป็น Navy (รองรับ Topbar) ครึ่งล่างเป็น ขาว (รองรับ Bottom bar) */
-            background-image: linear-gradient(to bottom, #0D1B2A 50%, #FFFFFF 50%);
+            margin: 0; padding: 0; height: 100%; overflow: hidden; 
+            background-color: #FFFFFF; 
+        }
+        
+        /* 🚨 5. เวทมนตร์แยกโหมด: ถ้าเปิดแบบแอป (Standalone/PWA) ให้เปลี่ยนพื้นหลังตอนโหลดเป็นสี Navy เข้ม */
+        @media (display-mode: standalone) {
+            body, html { background-color: #0D1B2A; }
         }
 
-        /* 2. กรอบนิรภัย (Safe Wrapper) ที่จะทำหน้าที่หลบรอยบากให้ iframe อัตโนมัติ */
-        #safe-wrapper {
-            position: absolute;
-            top: env(safe-area-inset-top);    /* ดันหลบรอยบากด้านบน */
-            bottom: env(safe-area-inset-bottom); /* ดันหลบขีด Home ด้านล่าง */
-            left: env(safe-area-inset-left);
-            right: env(safe-area-inset-right);
-            background-color: #F7F8FA;
-        }
-
-        /* 3. iframe ทำตัวเป็นสี่เหลี่ยม 100% พอดีเป๊ะในกรอบนิรภัย */
         iframe { width: 100%; height: 100%; border: none; display: block; }
     </style>
 </head>
 <body>
-    <div id="safe-wrapper">
-        <iframe src="https://script.google.com/macros/s/AKfycbx3QwtvfLC5tKw6N7usrnX4DIuhHKbkX9AktAf0rVl9RIIBCaWD9yVMnDgI8PuXuq9U1A/exec"></iframe>
-    </div>
+    <iframe src="https://script.google.com/macros/s/AKfycbx3QwtvfLC5tKw6N7usrnX4DIuhHKbkX9AktAf0rVl9RIIBCaWD9yVMnDgI8PuXuq9U1A/exec"></iframe>
 </body>
 </html>
