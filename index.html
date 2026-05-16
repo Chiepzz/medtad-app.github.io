@@ -9,46 +9,17 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="MedTad">
-    <meta name="application-name" content="MedTad">
-
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="logo.png">
-    <link rel="icon" sizes="192x192" href="logo.png">
     
-    <meta name="theme-color" id="theme-color-meta" content="#FFFFFF">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
 
     <style>
-        /* โหมดเปิดใน Safari ปกติ */
-        body, html { 
-            margin: 0; padding: 0; height: 100vh; overflow: hidden; 
-            background-color: #FFFFFF; 
-            box-sizing: border-box;
-        }
-        
-        /* 🚨 โหมดแอป PWA (เวทมนตร์สร้างเกราะป้องกันอยู่ที่นี่!) */
-        @media (display-mode: standalone) {
-            body, html {
-                /* ทาสีด้านหลังรอยบากให้เป็น Navy และสีฐานด้านล่างให้เป็น White แบบเนียนๆ */
-                background: linear-gradient(to bottom, #0D1B2A 0%, #0D1B2A 50%, #FFFFFF 50%, #FFFFFF 100%);
-                
-                /* ใช้หน้าบ้าน (GitHub) บีบกรอบ iframe ให้หลบเข้าเซฟโซนของ iPhone อัตโนมัติ */
-                padding-top: env(safe-area-inset-top);
-                padding-bottom: env(safe-area-inset-bottom);
-            }
-        }
-
-        /* iframe แอปจะแสดงผลเต็ม 100% ของพื้นที่ปลอดภัยพอดีเป๊ะ */
-        iframe { width: 100%; height: 100%; border: none; display: block; background: #F7F8FA; }
+        /* ล็อกตายตัว ห้ามไหล ห้ามเลื่อน พื้นหลังสีเดียวกับ Top Bar */
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #0D1B2A; }
+        iframe { width: 100%; height: 100%; border: none; display: block; }
     </style>
 </head>
 <body>
     <iframe src="https://script.google.com/macros/s/AKfycbx3QwtvfLC5tKw6N7usrnX4DIuhHKbkX9AktAf0rVl9RIIBCaWD9yVMnDgI8PuXuq9U1A/exec"></iframe>
-
-    <script>
-        // ระบบสลับสีธีม
-        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
-            document.getElementById('theme-color-meta').setAttribute('content', '#0D1B2A');
-        }
-    </script>
 </body>
 </html>
